@@ -1,2 +1,2 @@
 # gpio-components
-Example of WebAssembly components using a potential GPIO interface
+This repository serves as the home for the proof of concept developed as part of my Master's thesis research.
