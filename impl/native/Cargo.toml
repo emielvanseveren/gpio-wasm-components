@@ -1,0 +1,10 @@
+[package]
+name = "native"
+edition = "2021"
+version = "0.1.0"
+
+[dependencies]
+embedded-hal = { workspace = true }
+linux-embedded-hal = { workspace = true, features = ["gpio_cdev"] }
+anyhow = { workspace = true }
+

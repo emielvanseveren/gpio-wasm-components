@@ -1,0 +1,78 @@
+package thesis:gpio
+
+interface wasi-gpio-error {
+  /// An error resource type for keyvalue operations.
+	/// Currently, this provides only one function to return a string representation
+	/// of the error. In the future, this will be extended to provide more information
+	/// about the error.
+	// TODO: switch to `resource error { ... }`
+  type error = u32
+  /// drop-error: func(e: error)
+  /// trace: func(e: error) -> string
+}
+
+interface types {
+
+  use wasi-gpio-error.{ error }
+  type device = u32
+
+  enum mode {
+    input,
+    output
+  }
+
+  enum input-modes {
+    floating,
+    pull-up,
+    pull-down 
+  }
+
+  enum output-modes {
+    floating,
+    pull-up,
+    pull-down 
+  }
+
+  enum pin-state {
+    low,
+    high
+  }
+
+  gpio-init: func(port: u32, pin: u32, mode: mode) -> result<device, error>
+  gpio-deinit: func(device: device) -> result<_,error>
+ 
+  /// type output-pin = u32
+
+  /// Drives the pin low
+  /// The actual electrical state of the pin may not actually be low, e.g. due to
+  /// external electrical sources
+  output-set-low: func(device: device) -> result<_, error>
+
+  /// Drives the pin high
+  /// The actual electical state of the pin may not actually be high, e.g. due to
+  /// external electrical sources
+  output-set-high: func(device: device) -> result<_, error>
+
+  /// Drives the pin high or low depending on the provided value
+  /// The actual electrical state of the pin may not actually be high or low, e.g.
+  /// due to external electrical sources
+  output-set: func(state: pin-state) -> result<_, error> 
+  
+
+  /// type input-pin = u32
+  /// input-is-high: func(device: device) -> result<bool, error>
+  /// input-is-low: func(device: device) -> result<bool,error>
+  input-get: func(device: device) -> result<pin-state, error>
+
+  
+  /// toggle
+  toggle: func(device: device) -> result<pin-state, error>
+
+}
+
+world gpio-app {
+  import types
+  export start: func() -> result
+  export host-to-guest: func() -> result
+}
+

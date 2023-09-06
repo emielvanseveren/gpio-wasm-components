@@ -1,0 +1,19 @@
+[package]
+name = "host"
+edition = "2021"
+version = "0.1.0"
+
+[dependencies]
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+wasmtime-wasi = { workspace = true }
+wasmtime = { workspace = true, features = ["component-model", "cranelift"] }
+clap = { workspace =true, features = ["color", "suggestions", "derive"] }
+async-trait = { workspace = true }
+tokio = { workspace = true , features = [ "full" ] }
+embedded-hal = { workspace = true }
+linux-embedded-hal = { workspace = true, features = ["gpio_cdev"] }
+lazy_static = { workspace = true}
+chrono = {workspace = true}
+futures = { workspace = true }

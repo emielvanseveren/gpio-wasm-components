@@ -1,0 +1,15 @@
+{
+  "name": "guestjs",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "build": "node index.mjs"
+  },
+  "author": "Emiel Van Severen",
+  "license": "ISC",
+  "dependencies": {
+    "@bytecodealliance/componentize-js": "^0.1.1",
+    "@bytecodealliance/jco": "^0.10.3"
+  }
+}

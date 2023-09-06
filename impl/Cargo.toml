@@ -1,0 +1,36 @@
+[workspace]
+members = [
+    "host",
+    "guest-rs",
+    "bench/guest-large-host-implementation",
+    "bench/empty-host"
+]
+resolver = "2"
+
+[profile.release]
+opt-level = "z"           # Optimize for size
+lto = true                # Enable Link time optimization
+codegen-units = 1         # allow for maximum size reduction optimizations
+panic = "abort"           # Abort on panic
+debug = false             # Disable debug info
+debug-assertions = false
+overflow-checks = false
+incremental = false
+rpath = false
+
+
+[workspace.dependencies]
+tracing = "0.1.37"
+tracing-subscriber = "0.3.17"
+wit-bindgen = { git="https://github.com/bytecodealliance/wit-bindgen", branch="main" }
+anyhow = "1"
+wasmtime-wasi = "11.0.1"
+wasmtime = "11.0.1"
+clap = "3.2.0"
+async-trait = "0.1"
+tokio = "1.22.0"
+embedded-hal = "1.0.0-alpha.10"
+linux-embedded-hal = "0.3"
+lazy_static = "1.4.0"
+chrono = "0.4"
+futures = "0.3.28"

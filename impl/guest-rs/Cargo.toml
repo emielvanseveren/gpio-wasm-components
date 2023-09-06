@@ -1,0 +1,14 @@
+[package]
+name = "guest"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+# dynamic system library (so,dylib,dll)
+crate-type = ["cdylib"]
+
+[dependencies]
+wit-bindgen = { workspace = true }
+tracing = {workspace = true}
+chrono = {workspace = true}
+
